@@ -3,10 +3,7 @@ import Link from "next/link";
 async function getSongs(query) {
   if (!query) return [];
   try {
-    const res = await fetch(
-      `https://api.deezer.com/search?q=${encodeURIComponent(query)}`,
-    //   { cache: "no-store" },
-    );
+    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
     const data = await res.json();
     return data.data || [];
   } catch {
@@ -65,8 +62,10 @@ export default async function SearchPage({ searchParams }) {
             gap: 24,
           }}
         >
-             {songs.map(song => <SongCard key={song.id} track={song} />)}
-              <ViewAllCircle />
+          {songs.map((song) => (
+            <SongCard key={song.id} track={song} />
+          ))}
+          <ViewAllCircle />
           {/* {songs.map((song, i) => (
             // ✅ Link to /{song.id} — same as home and discover pages
             <Link
@@ -76,7 +75,7 @@ export default async function SearchPage({ searchParams }) {
             >
               {/* <Link href={`/${track.trackId}`} style={{ textDecoration: "none", color: "inherit" }}> */}
 
-              {/* <div className="song-card" style={{ minWidth: "unset" }}>
+          {/* <div className="song-card" style={{ minWidth: "unset" }}>
                 <div
                   className="song-card-img"
                   style={{ width: "100%", height: "180px" }}
@@ -112,7 +111,7 @@ export default async function SearchPage({ searchParams }) {
                 </p>
               </div>
             </Link> */}
-            {/* ))} */}
+          {/* ))} */}
         </div>
       )}
     </div>

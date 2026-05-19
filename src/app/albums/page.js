@@ -14,7 +14,7 @@ async function fetchAlbums() {
   try {
     const results = await Promise.all(
       QUERIES.map((q) =>
-        fetch(`${"http://localhost:3000"}/api/songs?q=${q}&limit=4`, {
+        fetch(`/api/songs?q=${q}&limit=4`, {
           cache: "force-cache",
         }).then((r) => r.json()),
       ),

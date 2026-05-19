@@ -7,7 +7,7 @@ async function getPlaylist() {
     const token = cookieStore.get("token")?.value;
     if (!token) return [];
 
-    const res = await fetch("http://localhost:3000/api/playlist", {
+    const res = await fetch("/api/playlist", {
       headers: { Cookie: `token=${token}` },
       cache: "no-store",
     });

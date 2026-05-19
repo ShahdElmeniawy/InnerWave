@@ -79,7 +79,7 @@ const ARTISTS = [
 async function fetchTracks(genre, limit) {
   try {
     const res = await fetch(
-      `${"http://localhost:3000"}/api/songs?q=${genre}&limit=${limit}`,
+      `/api/songs?q=${genre}&limit=${limit}`,
       { cache: "no-store" },
     );
     const data = await res.json();
