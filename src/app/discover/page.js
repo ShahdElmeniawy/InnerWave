@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 //(SSR)
 
 const GENRES = [
@@ -78,10 +80,9 @@ const ARTISTS = [
 
 async function fetchTracks(genre, limit) {
   try {
-    const res = await fetch(
-      `/api/songs?q=${genre}&limit=${limit}`,
-      { cache: "no-store" },
-    );
+    const res = await fetch(`/api/songs?q=${genre}&limit=${limit}`, {
+      cache: "no-store",
+    });
     const data = await res.json();
     return data.data ?? [];
   } catch (e) {
@@ -108,7 +109,7 @@ export default async function DiscoverPage() {
         <div className="section">
           <div className="cards-row">
             {GENRES.map((g) => (
-              <a
+              <Link
                 key={g.label}
                 href={`/discover?genre=${g.q}`}
                 className="genre-card"
@@ -117,7 +118,7 @@ export default async function DiscoverPage() {
                 <div className="genre-card-overlay">
                   <span>{g.label}</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

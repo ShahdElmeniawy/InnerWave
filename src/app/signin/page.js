@@ -1,11 +1,20 @@
-"use client";
-
-import { useState } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 
 export default function SignInPage() {
+  return (
+    <Suspense fallback={<div style={styles.page}>Loading sign in...</div>}>
+      <SignInClient />
+    </Suspense>
+  );
+}
+
+function SignInClient() {
+  "use client";
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";
@@ -68,7 +77,9 @@ export default function SignInPage() {
     <div style={styles.page}>
       <div style={styles.card}>
         {/* Logo */}
-        <Link href="/" style={styles.logo}>Innerwave</Link>
+        <Link href="/" style={styles.logo}>
+          Innerwave
+        </Link>
         <h1 style={styles.title}>Welcome back</h1>
         <p style={styles.subtitle}>Sign in to your account</p>
 
@@ -108,7 +119,9 @@ export default function SignInPage() {
               }}
               autoComplete="current-password"
             />
-            {errors.password && <span style={styles.error}>{errors.password}</span>}
+            {errors.password && (
+              <span style={styles.error}>{errors.password}</span>
+            )}
           </div>
 
           <button type="submit" style={styles.btn} disabled={loading}>
@@ -118,7 +131,9 @@ export default function SignInPage() {
 
         <p style={styles.footer}>
           Don&apos;t have an account?{" "}
-          <Link href="/signup" style={styles.link}>Sign up</Link>
+          <Link href="/signup" style={styles.link}>
+            Sign up
+          </Link>
         </p>
       </div>
     </div>
@@ -147,7 +162,8 @@ const styles = {
     fontFamily: "var(--font-display)",
     fontSize: "1.4rem",
     fontWeight: 800,
-    background: "linear-gradient(135deg, #e91e8c 0%, #ff4db8 50%, #c2185b 100%)",
+    background:
+      "linear-gradient(135deg, #e91e8c 0%, #ff4db8 50%, #c2185b 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",

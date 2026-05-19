@@ -53,6 +53,13 @@ http://localhost:3000
 - `npm run start` — run the production server after build
 - `npm run lint` — run ESLint
 
+## Production Build
+
+- Run `npm run build` to verify the app compiles cleanly.
+- Run `npm run start` to serve the production build locally.
+- Make sure `MONGODB_URI` and `JWT_SECRET` are set in production.
+- The app uses server-side Deezer proxy routes, so browser CORS is not required.
+
 ## API Routes
 
 - `GET /api/search?q=...` — search tracks via Deezer proxy
