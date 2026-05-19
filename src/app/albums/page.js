@@ -14,9 +14,12 @@ async function fetchAlbums() {
   try {
     const results = await Promise.all(
       QUERIES.map((q) =>
-        fetch(`/api/songs?q=${q}&limit=4`, {
-          cache: "force-cache",
-        }).then((r) => r.json()),
+        fetch(
+          `https://api.deezer.com/search?q=${encodeURIComponent(q)}&limit=4`,
+          {
+            cache: "force-cache",
+          },
+        ).then((r) => r.json()),
       ),
     );
     const all = results.flatMap((r) => r.data ?? []);

@@ -1,5 +1,8 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
+import connectDB from "@/lib/mongodb";
+import { verifyToken } from "@/lib/jwt";
+import User from "@/models/User";
 
 async function getPlaylist() {
   try {
@@ -7,14 +10,13 @@ async function getPlaylist() {
     const token = cookieStore.get("token")?.value;
     if (!token) return [];
 
-    const res = await fetch("/api/playlist", {
-      headers: { Cookie: `token=${token}` },
-      cache: "no-store",
-    });
+    const payload = await verifyToken(token);
+    if (!payload) return [];
 
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.data || [];
+    await connectDB();
+
+    const user = await User.findById(payload.userId).select("playlist").lean();
+    return user?.playlist || [];
   } catch {
     return [];
   }
@@ -22,7 +24,6 @@ async function getPlaylist() {
 
 export default async function YourListPage() {
   const tracks = await getPlaylist();
-  console.log("Fetched playlist tracks:", tracks);
 
   return (
     <>

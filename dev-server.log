@@ -1,0 +1,12 @@
+
+> nextapp@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.9:3000
+✓ Ready in 6.9s
+Creating turbopack project { dir: 'E:\\nextapp', testMode: true }
+
+ GET /api/search?q=adele&limit=2 404 in 3.4s (next.js: 2.7s, application-code: 734ms)
+ GET /search?q=adele 404 in 3.4s (next.js: 3.3s, application-code: 143ms)
