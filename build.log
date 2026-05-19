@@ -1,0 +1,9 @@
+
+> nextapp@0.1.0 build
+> next build
+
+⚠ `images.domains` is deprecated in favor of `images.remotePatterns`. Please update next.config.mjs to protect your application from malicious users.
+▲ Next.js 16.2.6 (Turbopack)
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
