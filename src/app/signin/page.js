@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense } from "react";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,8 +15,6 @@ export default function SignInPage() {
 }
 
 function SignInClient() {
-  "use client";
-
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";

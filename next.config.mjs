@@ -2,7 +2,20 @@
 const nextConfig = {
   allowedDevOrigins: ['127.0.0.1'],
   images: {
-    domains: ['cdn-images.dzcdn.net', 'e-cdns-images.dzcdn.net', 'images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn-images.dzcdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'e-cdns-images.dzcdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
 };
 
